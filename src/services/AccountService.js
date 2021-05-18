@@ -29,7 +29,7 @@ module.exports = {
     withdraw(event){
         const { origin, amount } = event;
         const withdrawAccount = accounts.find((account) => account.id === origin);
-
+        if (withdrawAccount.balance < amount) return undefined;
         if (withdrawAccount) {
             withdrawAccount.withdraw(amount);
         }
